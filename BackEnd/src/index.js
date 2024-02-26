@@ -33,3 +33,27 @@ app.listen (port, (error)=>{
         console. log("Error : "+error)
     }
 })
+
+//Image Storage Engine
+
+const storage=multer.diskStorage({
+    destination: "/upload/images",
+    filename:(req,file,cb)=>{
+        return cb(null,`${file. fieldname}__${Date.now()}${path.extname(file.originalname)}`)
+    }
+})
+
+const upload = multer({storage:storage})
+
+//create upload endpoint for images
+
+app.get('/images',express.static("/upload/images"))
+
+app.post('/upload',upload.single('product' ),(req,res)=> {
+   // req.file represents the file uploaded by the user with the name "sampleFile".
+   // Check the file size and type before
+   res.json({
+        success:1,
+        imagePath: `http://localhost:${port}/images/${req.file.filename}`
+   })
+})
