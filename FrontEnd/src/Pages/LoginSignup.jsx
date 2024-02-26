@@ -1,6 +1,10 @@
 import React from 'react'
 import './CSS/LoginSignup.css'
 
+/* The `const LoginSignup = () => { ... }` function is a React functional component in JavaScript. It
+defines a component called `LoginSignup` that represents a sign-up form UI. Inside the component, it
+returns JSX (a syntax extension for JavaScript that looks similar to HTML) which describes the
+structure of the sign-up form. */
 const LoginSignup = () => {
   return (
     <div className='loginsignup'>
