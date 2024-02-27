@@ -4,11 +4,11 @@ import all_product from "../Components/Assets/all_product";
 export const ShopContext =  createContext(null);
 
 const getDefaultCart = ()=>{
-    let cart = {};
+    let vehicle = {};
     for (let index = 0; index < all_product.length+1; index++) {
-        cart[index] = 0;
+        vehicle[index] = 0;
     }
-    return cart;
+    return vehicle;
 }
 
 const ShopContextProvider = (props) => {

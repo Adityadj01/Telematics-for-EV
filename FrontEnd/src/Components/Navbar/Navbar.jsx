@@ -30,13 +30,13 @@ const Navbar = () => {
         <li onClick={() => { setMenu("womens") }}><Link to="womens">3 Wheeler</Link>{menu === "womens" ? <hr /> : <></>}</li>
         <li onClick={() => { setMenu("kids") }}><Link to='kids'>4 Wheeler</Link>{menu === "kids" ? <hr /> : <></>}</li>
       </ul>
-      <div className="nav-login-cart">
+      <div className="nav-login-vehicle">
         <Link to='/login'><button>Login</button></Link>
-        <Link to='/cart'>
+        <Link to='/vehicle'>
           {/* <img src={cart_icon} alt="" /> */}
           <button>My Vehicle</button>
         </Link>
-        <div className="nav-cart-count">{getTotalCartItems()}</div>
+        <div className="nav-vehicle-count">{getTotalCartItems()}</div>
       </div>
     </div>
   )
