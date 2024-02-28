@@ -38,7 +38,7 @@ import p32_img from "./product_32.jpeg";
 let all_product = [
   {
     id: 1,
-    name: "Three wheeler",
+    name: "Ape E city",
     category: "Three Wheeler",
     image: p1_img,
     new_price: 50.0,
@@ -46,7 +46,7 @@ let all_product = [
   },
   {
     id: 2,
-    name: "Three wheeler",
+    name: "Bajaj RE TEC 9.0 ",
     category: "Three Wheeler",
     image: p2_img,
     new_price: 85.0,
@@ -54,7 +54,7 @@ let all_product = [
   },
   {
     id: 3,
-    name: "Three wheeler",
+    name: "Euler HiLoad DV",
     category: "Three Wheeler",
     image: p3_img,
     new_price: 60.0,
@@ -62,7 +62,7 @@ let all_product = [
   },
   {
     id: 4,
-    name: "Three wheeler",
+    name: "JEZZA e rickshaw",
     category: "Three Wheeler",
     image: p4_img,
     new_price: 100.0,
@@ -70,7 +70,7 @@ let all_product = [
   },
   {
     id: 5,
-    name: "Three wheeler",
+    name: "Kinetic Safari Shakti",
     category: "Three Wheeler",
     image: p5_img,
     new_price: 85.0,
@@ -78,7 +78,7 @@ let all_product = [
   },
   {
     id: 6,
-    name: "Three wheeler",
+    name: "Mahindra Treo Zor",
     category: "Three Wheeler",
     image: p6_img,
     new_price: 85.0,
@@ -86,7 +86,7 @@ let all_product = [
   },
   {
     id: 7,
-    name: "Three wheeler",
+    name: "OSM Stream city",
     category: "Three Wheeler",
     image: p7_img,
     new_price: 85.0,
@@ -94,7 +94,7 @@ let all_product = [
   },
   {
     id: 8,
-    name: "Three wheeler",
+    name: "Y4A",
     category: "Three Wheeler",
     image: p8_img,
     new_price: 85.0,
@@ -142,7 +142,7 @@ let all_product = [
   },
   {
     id: 14,
-    name: "Ather 450X",
+    name: "Ather 450S",
     category: "Two Wheeler",
     image: p14_img,
     new_price: 85.0,
@@ -150,7 +150,7 @@ let all_product = [
   },
   {
     id: 15,
-    name: "Ather 450S",
+    name: "Ather 450X",
     category: "Two Wheeler",
     image: p15_img,
     new_price: 85.0,
@@ -158,7 +158,7 @@ let all_product = [
   },
   {
     id: 16,
-    name: "OLA S1 Pro",
+    name: "OLA S1 Air",
     category: "Two Wheeler",
     image: p16_img,
     new_price: 85.0,
@@ -166,7 +166,7 @@ let all_product = [
   },
   {
     id: 17,
-    name: "OLA S1 Air",
+    name: "OLA S1 Pro",
     category: "Two Wheeler",
     image: p17_img,
     new_price: 85.0,
@@ -174,7 +174,7 @@ let all_product = [
   },
   {
     id: 18,
-    name: "OLA S1X+",
+    name: "OLA S1X",
     category: "Two Wheeler",
     image: p18_img,
     new_price: 85.0,
@@ -182,7 +182,7 @@ let all_product = [
   },
   {
     id: 19,
-    name: "OLA S1 Pro max",
+    name: "OLA S1X+",
     category: "Two Wheeler",
     image: p19_img,
     new_price: 85.0,
@@ -230,7 +230,7 @@ let all_product = [
   // },
   {
     id: 25,
-    name: "BMW i420",
+    name: "BMW i3S",
     category: "Four_Wheeler",
     image: p25_img,
     new_price: 85.0,
@@ -238,7 +238,7 @@ let all_product = [
   },
   {
     id: 26,
-    name: "Audi R80",
+    name: "Audi e-tron 50 quattro",
     category: "Four_Wheeler",
     image: p26_img,
     new_price: 85.0,
@@ -246,7 +246,7 @@ let all_product = [
   },
   {
     id: 27,
-    name: "Audi g wagon",
+    name: "Audi e-tron 55 quattro",
     category: "Four_Wheeler",
     image: p27_img,
     new_price: 85.0,
@@ -254,7 +254,7 @@ let all_product = [
   },
   {
     id: 28,
-    name: "Audi",
+    name: "Audi e-tron S quattro",
     category: "Four_Wheeler",
     image: p28_img,
     new_price: 85.0,
@@ -262,7 +262,7 @@ let all_product = [
   },
   {
     id: 29,
-    name: "Audi",
+    name: "Audi e-tron Sportback 50 quattro",
     category: "Four_Wheeler",
     image: p29_img,
     new_price: 85.0,
@@ -270,7 +270,7 @@ let all_product = [
   },
   {
     id: 30,
-    name: "Audi",
+    name: "Audi e-tron Sportback 55 quattrro",
     category: "Four_Wheeler",
     image: p30_img,
     new_price: 85.0,
@@ -278,7 +278,7 @@ let all_product = [
   },
   {
     id: 31,
-    name: "Audi",
+    name: "Audi e-tron Sportback S quattro",
     category: "Four_Wheeler",
     image: p31_img,
     new_price: 85.0,
@@ -286,7 +286,7 @@ let all_product = [
   },
   {
     id: 32,
-    name: "Bee AM vee",
+    name: "BMW i3",
     category: "Four_Wheeler",
     image: p32_img,
     new_price: 85.0,
