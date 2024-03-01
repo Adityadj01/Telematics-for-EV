@@ -6,7 +6,7 @@ defines a component called `LoginSignup` that represents a sign-up form UI. Insi
 returns JSX (a syntax extension for JavaScript that looks similar to HTML) which describes the
 structure of the sign-up form. */
 const LoginSignup = () => {
-  const [state, setState] = useState("Sign up");
+  const [state, setState] = useState("Login");
 
   const [formData, setFormData] = useState({
     username: "",
