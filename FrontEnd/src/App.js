@@ -8,8 +8,8 @@ import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
 import Footer from './Components/Footer/Footer';
-import men_banner from './Components/Assets/banner_mens.png'
-import women_banner from './Components/Assets/banner_women.png'
+//import men_banner from './Components/Assets/banner_mens.png'
+//import women_banner from './Components/Assets/banner_women.png'
 // import kid_banner from './Components/Assets/banner_kids.png'
 import four_banner from './Components/Assets/4wheeler_banner.jpg'
 import two_banner from './Components/Assets/2wheeler_banner.jpg'
