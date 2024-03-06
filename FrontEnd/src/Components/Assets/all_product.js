@@ -230,7 +230,7 @@ let all_product = [
   // },
   {
     id: 25,
-    name: "BMW i3S",
+    name: "Audi e-tron 55 quattro",
     category: "Four_Wheeler",
     image: p25_img,
     new_price: 85.0,
@@ -238,7 +238,7 @@ let all_product = [
   },
   {
     id: 26,
-    name: "Audi e-tron 50 quattro",
+    name: "Audi e-tron Sportback 50 quattro",
     category: "Four_Wheeler",
     image: p26_img,
     new_price: 85.0,
@@ -246,7 +246,7 @@ let all_product = [
   },
   {
     id: 27,
-    name: "Audi e-tron 55 quattro",
+    name: "Audi e-tron Sportback 55 quattrro",
     category: "Four_Wheeler",
     image: p27_img,
     new_price: 85.0,
@@ -254,7 +254,7 @@ let all_product = [
   },
   {
     id: 28,
-    name: "Audi e-tron S quattro",
+    name: "BMW i3",
     category: "Four_Wheeler",
     image: p28_img,
     new_price: 85.0,
@@ -262,7 +262,7 @@ let all_product = [
   },
   {
     id: 29,
-    name: "Audi e-tron Sportback 50 quattro",
+    name: "Citroen eC3",
     category: "Four_Wheeler",
     image: p29_img,
     new_price: 85.0,
@@ -270,7 +270,7 @@ let all_product = [
   },
   {
     id: 30,
-    name: "Audi e-tron Sportback 55 quattrro",
+    name: "Hyundai IONIQ 5",
     category: "Four_Wheeler",
     image: p30_img,
     new_price: 85.0,
@@ -278,7 +278,7 @@ let all_product = [
   },
   {
     id: 31,
-    name: "Audi e-tron Sportback S quattro",
+    name: "Hyundai Kona Electric",
     category: "Four_Wheeler",
     image: p31_img,
     new_price: 85.0,
@@ -286,7 +286,7 @@ let all_product = [
   },
   {
     id: 32,
-    name: "BMW i3",
+    name: "Jaguar I-Pace",
     category: "Four_Wheeler",
     image: p32_img,
     new_price: 85.0,
