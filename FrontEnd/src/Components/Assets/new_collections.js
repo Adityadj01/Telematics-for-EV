@@ -17,14 +17,14 @@ let new_collections = [
   },
   {
     id: 31,
-    name: "Audi e-tron Sportback S quattro",
+    name: "Hyundai Kona Electric",
     image: product_31,
     new_price: 85.0,
     old_price: 120.5,
   },
   {
     id: 28,
-    name: " Audi e-tron S quattro",
+    name: " BMW i3",
     image: product_28,
     new_price: 60.0,
     old_price: 100.5,
