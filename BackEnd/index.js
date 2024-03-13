@@ -7,6 +7,8 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const fs = require('fs');
+const bodyParser = require('body-parser');
+
 
 // Create the 'upload/images' directory if it doesn't exist
 if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
