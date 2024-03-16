@@ -1,6 +1,9 @@
 const port = 4000;
 const express = require( "express" ) ;
 const app = express();
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan');
 const mongoose = require( "mongoose");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
@@ -8,7 +11,18 @@ const path = require("path");
 const cors = require("cors");
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+
 const { MongoClient } = require('mongodb');
+
+// Middleware setup
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(morgan('dev'));
+app.use(cors());
+app.use(helmet());
+app.use(compression());
 
 // MongoDB connection URI
 const uri = 'mongodb://localhost:27017';
@@ -122,6 +136,9 @@ app.get('/data', async (req, res) => {
 // Set Pug as the view engine
 app.set('view engine', 'pug');
 
+// Set the directory for Pug templates
+app.set('views', path.join(__dirname, 'views'));
+
 // Define a route to render index.pug
 app.get('/', (req, res) => {
   res.render('index'); // Assuming index.pug is located in the views directory
@@ -129,11 +146,7 @@ app.get('/', (req, res) => {
 
 // Other routes and middleware definitions go here
 
-// Start the server
-const PORT = process.env.PORT || 3002;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
 // schema creating for users
 
   const Users= mongoose.model('Users',{
@@ -219,3 +232,9 @@ app.post( '/login' , async (req,res)=>{
         res.json({success: false, error:'Wrong Email ID'})
     }
 })
+
+// Start the server
+const PORT = process.env.PORT || 3002;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
