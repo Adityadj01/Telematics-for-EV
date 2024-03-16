@@ -119,6 +119,21 @@ app.get('/data', async (req, res) => {
     }
   });
 
+// Set Pug as the view engine
+app.set('view engine', 'pug');
+
+// Define a route to render index.pug
+app.get('/', (req, res) => {
+  res.render('index'); // Assuming index.pug is located in the views directory
+});
+
+// Other routes and middleware definitions go here
+
+// Start the server
+const PORT = process.env.PORT || 3002;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 // schema creating for users
 
   const Users= mongoose.model('Users',{
