@@ -107,15 +107,15 @@ app.post('/upload', upload.single('product'), (req, res) => {
   });
 
 // Define route to fetch data
-app.get('/mydatabase', async (req, res) => {
+app.get('/data', async (req, res) => {
     try {
       const db = client.db();
-      const collection = db.collection('mycollection1');
-      const mydatabase = await collection.find({}).toArray();
-      res.json(mydatabase);
+      const collection = db.collection(mycollection1);
+      const data = await collection.find({}).toArray();
+      res.json(data);
     } catch (error) {
-      console.error('Error fetching users:', error);
-      res.status(500).json({ error: 'Error fetching users' });
+      console.error('Error fetching data:', error);
+      res.status(500).json({ error: 'Error fetching data' });
     }
   });
 
