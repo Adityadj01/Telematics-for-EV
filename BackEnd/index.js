@@ -10,7 +10,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
 
-// Connection URI
+// MongoDB connection URI
 const uri = 'mongodb://localhost:27017';
 
 // Database Name
@@ -104,6 +104,19 @@ app.post('/upload', upload.single('product'), (req, res) => {
       success: 1,
       imagePath: `http://localhost:${port}/images/${req.file.filename}`
     });
+  });
+
+// Define route to fetch data
+app.get('/mydatabase', async (req, res) => {
+    try {
+      const db = client.db();
+      const collection = db.collection('mycollection1');
+      const mydatabase = await collection.find({}).toArray();
+      res.json(mydatabase);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Error fetching users' });
+    }
   });
 
 // schema creating for users
