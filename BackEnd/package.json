@@ -4,7 +4,8 @@
   "description": "EV Diagnose Backend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -36,5 +37,8 @@
     "multer": "^1.4.5-lts.1",
     "pug": "^3.0.2"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "pm2": "^5.3.1"
+  }
 }
