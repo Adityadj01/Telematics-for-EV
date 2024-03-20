@@ -12,28 +12,37 @@ const cors = require("cors");
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { MongoClient } = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
 
-const uri = "<YOUR_CLUSTER_URI>";
-const client = new MongoClient(uri, { useUnifiedTopology: true });
+async function displayData() {
+  const uri = "mongodb://localhost:27017/mydatabase";
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-async function connectToMongoDB() {
-    try {
-        await client.connect();
-        console.log("Connected to MongoDB Atlas");
-
-        const database = client.db("EVDiagnose");
-        const collection = database.collection("<YOUR_COLLECTION_NAME>");
-
-        // You can perform operations on the collection here
-
-    } catch (err) {
-        console.error("Error connecting to MongoDB Atlas", err);
-    }
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+    
+    const database = client.db("mydatabase");
+    const collection = database.collection("mycollection");
+    
+    // Fetch data from the collection
+    const cursor = collection.find({});
+    
+    // Iterate over the cursor and log each document
+    await cursor.forEach(document => {
+      console.log(document);
+    });
+    
+  } catch (err) {
+    console.error("Error connecting to MongoDB", err);
+  } finally {
+    await client.close();
+    console.log("Connection to MongoDB closed");
+  }
 }
 
-connectToMongoDB();
-
+// Call the function to display data from MongoDB
+displayData();
 
 // Create the 'upload/images' directory if it doesn't exist
 if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
