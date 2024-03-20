@@ -12,8 +12,28 @@ const cors = require("cors");
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const mongoDB = require("./db");
-mongoDB();
+const { MongoClient } = require('mongodb');
+
+const uri = "<YOUR_CLUSTER_URI>";
+const client = new MongoClient(uri, { useUnifiedTopology: true });
+
+async function connectToMongoDB() {
+    try {
+        await client.connect();
+        console.log("Connected to MongoDB Atlas");
+
+        const database = client.db("EVDiagnose");
+        const collection = database.collection("<YOUR_COLLECTION_NAME>");
+
+        // You can perform operations on the collection here
+
+    } catch (err) {
+        console.error("Error connecting to MongoDB Atlas", err);
+    }
+}
+
+connectToMongoDB();
+
 
 // Create the 'upload/images' directory if it doesn't exist
 if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
