@@ -15,36 +15,6 @@ const cookieParser = require('cookie-parser');
 const mongoDB = require("./db");
 mongoDB();
 
-// MongoDB connection URI
-const uri = 'mongodb://localhost:27017';
-
-// Database Name
-const dbName = 'mydatabase';
-
-async function main() {
-  const client = new MongoClient(uri);
-
-  try {
-    // Connect the client to the server
-    await client.connect();
-    console.log('Connected to MongoDB');
-
-    const database = client.db(dbName);
-
-    // Perform operations with the database
-    // For example, you can query documents from a collection
-    const collection = database.collection('mycollection');
-    const documents = await collection.find({}).toArray();
-    console.log('Documents:', documents);
-  } finally {
-    // Close the connection when finished
-    await client.close();
-    console.log('Disconnected from MongoDB');
-  }
-}
-
-main().catch(console.error);
-
 // Create the 'upload/images' directory if it doesn't exist
 if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
   fs.mkdirSync(path.join(__dirname, 'upload', 'images'));
