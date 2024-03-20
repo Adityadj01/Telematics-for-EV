@@ -12,7 +12,8 @@ const cors = require("cors");
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
+const mongoDB = require("./db");
+mongoDB();
 const { MongoClient } = require('mongodb');
 
 // Middleware setup
