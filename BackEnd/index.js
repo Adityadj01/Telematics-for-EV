@@ -13,6 +13,8 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoDB = require("./db");
+const uri1 = "mongodb+srv://username:" + encodeURIComponent("pass#") + "@cluster.yijnb.mongodb.net/db?retryWrites=true&w=majority"
+
 mongoDB();
 const { MongoClient } = require('mongodb');
 
@@ -24,7 +26,6 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(helmet());
 app.use(compression());
-
 // MongoDB connection URI
 const uri = 'mongodb://localhost:27017';
 
@@ -54,6 +55,7 @@ async function main() {
 }
 
 main().catch(console.error);
+
 
 // Create the 'upload/images' directory if it doesn't exist
 if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
