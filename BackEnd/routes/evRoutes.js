@@ -6,6 +6,8 @@ const EV = require('../models/evModel');
 const { verifyToken, isAdmin } = require('../middlewares/authMiddleware');
 const { body, validationResult } = require('express-validator');
 
+const bcrypt = require("bcryptjs");
+
 // Route to get all EVs
 router.get('/', async (req, res) => {
   try {
@@ -42,6 +44,9 @@ router.post('/', isAdmin, async (req, res) => {
     range: req.body.range,
     imageUrl: req.body.imageUrl
   });
+
+  const salt = await bcrypt.genSalt(10);
+  let secPassword = await bcrypt.hash()
   try {
     const newEV = await ev.save();
     res.status(201).json(newEV);
