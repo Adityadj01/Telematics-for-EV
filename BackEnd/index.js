@@ -15,7 +15,6 @@ const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 
 
-
 async function displayData() {
   const uri = "mongodb://localhost:27017/mydatabase";
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
