@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const EV = require('../models/evModel');
 const { verifyToken, isAdmin } = require('../middlewares/authMiddleware');
-
+const { body, validationResult } = require('express-validator');
 // Route to get all EVs
 router.get('/', async (req, res) => {
   try {
