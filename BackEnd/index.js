@@ -13,6 +13,8 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 async function displayData() {
   const uri = "mongodb://localhost:27017/mydatabase";
