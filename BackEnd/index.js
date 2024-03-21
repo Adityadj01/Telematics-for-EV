@@ -92,7 +92,8 @@ const upload = multer({storage:storage})
 //create upload endpoint for images
 
 app.use('/images', express.static(path.join(__dirname, 'upload/images')));
-
+app.use(express.json());
+app.use('/api',require("./routes/evRoutes"));
 app.post('/upload', upload.single('product'), (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
