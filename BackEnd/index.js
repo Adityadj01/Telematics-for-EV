@@ -14,16 +14,21 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
 
-
+//establishing a connection to a MongoDB database hosted on MongoDB Atlas.
+mongoose.connect("mongodb+srv://telematics:Evdiagnose@cluster0.jnx3h5g.mongodb.net/EVDiagnose?retryWrites=true&w=majority", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  serverSelectionTimeoutMS: 15000,
+});
 async function displayData() {
-  const uri = "mongodb://localhost:27017/mydatabase";
+  const uri = "mongodb+srv://telematics:Evdiagnose@cluster0.jnx3h5g.mongodb.net/EVDiagnose?retryWrites=true&w=majority";
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
   try {
     await client.connect();
     console.log("Connected to MongoDB");
     
-    const database = client.db("mydatabase");
+    const database = client.db("Evdiagnose");
     const collection = database.collection("mycollection");
     
     // Fetch data from the collection
@@ -53,10 +58,7 @@ if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
 app.use(express.json());
 app.use(cors());
 
-//establishing a connection to a MongoDB database hosted on MongoDB Atlas.
-mongoose.connect("mongodb+srv://telematics:Evdiagnose@cluster0.jnx3h5g.mongodb.net/EVDiagnose", {
-    serverSelectionTimeoutMS: 15000, // Increase the timeout to 15 seconds
- });
+
 
 //API Creation
 
@@ -229,4 +231,20 @@ app.post( '/login' , async (req,res)=>{
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    let filePath = path.join(__dirname, 'index.html');
+
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(404);
+            res.end('File not found!');
+            return;
+        }
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+    });
 });
