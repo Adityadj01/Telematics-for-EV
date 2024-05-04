@@ -22,13 +22,13 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Shop />} />
-          <Route path='/mens' element={<Category banner={two_banner} category="Two Wheeler" />} />
-          <Route path='/womens' element={<Category banner={three_banner} category="Three Wheeler" />} />
-          <Route path='/kids' element={<Category banner={four_banner} category="Four_Wheeler" />} />
+          <Route path='/2wheeler' element={<Category banner={two_banner} category="Two Wheeler" />} />
+          <Route path='/3wheeler' element={<Category banner={three_banner} category="Three Wheeler" />} />
+          <Route path='/4wheeler' element={<Category banner={four_banner} category="Four_Wheeler" />} />
           <Route path="/product" element={<Product />}>
             <Route path=':productId' element={<Product />} />
           </Route>
-          <Route path='/vehicle' element={<Cart />} />
+          <Route path='/profile' element={<Cart />} />
           <Route path='/login' element={<LoginSignup />} />
         </Routes>
         <Footer />

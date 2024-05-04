@@ -26,15 +26,15 @@ const Navbar = () => {
       <img onClick={dropdown_toggle} className='nav-dropdown' src={nav_dropdown} alt="" />
       <ul ref={menuRef} className="nav-menu">
         <li onClick={() => { setMenu("shop") }}><Link to='/'>Home</Link>{menu === "shop" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("mens") }}><Link to='/mens'>2 Wheeler</Link>{menu === "mens" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("womens") }}><Link to="womens">3 Wheeler</Link>{menu === "womens" ? <hr /> : <></>}</li>
-        <li onClick={() => { setMenu("kids") }}><Link to='kids'>4 Wheeler</Link>{menu === "kids" ? <hr /> : <></>}</li>
+        <li onClick={() => { setMenu("2wheeler") }}><Link to='/2wheeler'>2 Wheeler</Link>{menu === "2wheeler" ? <hr /> : <></>}</li>
+        <li onClick={() => { setMenu("3wheeler") }}><Link to="3wheeler">3 Wheeler</Link>{menu === "3wheeler" ? <hr /> : <></>}</li>
+        <li onClick={() => { setMenu("4wheeler") }}><Link to='4wheeler'>4 Wheeler</Link>{menu === "4wheeler" ? <hr /> : <></>}</li>
       </ul>
       <div className="nav-login-vehicle">
         <Link to='/login'><button>Login</button></Link>
-        <Link to='/vehicle'>
+        <Link to='/Profile'>
           {/* <img src={cart_icon} alt="" /> */}
-          <button>My Vehicle</button>
+          <button>Profile</button>
         </Link>
         <div className="nav-vehicle-count">{getTotalCartItems()}</div>
       </div>
