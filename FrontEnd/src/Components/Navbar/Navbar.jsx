@@ -5,6 +5,7 @@ import cart_icon from '../Assets/cart_icon.png'
 import nav_dropdown from '../Assets/nav_dropdown.png'
 import { Link } from 'react-router-dom'
 import { ShopContext } from '../../Context/ShopContext'
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
 
@@ -31,11 +32,11 @@ const Navbar = () => {
         <li onClick={() => { setMenu("4wheeler") }}><Link to='4wheeler'>4 Wheeler</Link>{menu === "4wheeler" ? <hr /> : <></>}</li>
       </ul>
       <div className="nav-login-vehicle">
-        {localStorage.getItem('auth-token')
-        ?<button onClick={() => {localStorage.removeItem('auth-token');window.location.replace("/")}}>Logout</button>
+        {Cookies.get('auth-token')
+        ?<button onClick={() => {Cookies.remove('auth-token');window.location.replace("/")}}>Logout</button>
         :<Link to='/login'><button>Login</button></Link>
         }
-        
+
         <Link to='/Profile'>
           {/* <img src={cart_icon} alt="" /> */}
           <button>Profile</button>
