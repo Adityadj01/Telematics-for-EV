@@ -197,7 +197,9 @@ app.post('/signup',async(req,res)=> {
 
     const data={
         user: {
-            id:user.id
+          id : user._id,
+          name: user.name,
+          email: user.email,
         }
     }
    
@@ -214,7 +216,9 @@ app.post( '/login' , async (req,res)=>{
         if (passCompare) {
             const data ={
                 user:{
-                    id : user.id
+                    id : user._id,
+                    name: user.name,
+                    email: user.email,
                 }
             }
             const token = jwt.sign(data,'secret_eVD');
