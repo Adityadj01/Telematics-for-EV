@@ -1,13 +1,13 @@
-import p1_img from './popular_2wheeler.jpg'
+import p14_img from './popular_2wheeler.jpg'
 import p2_img from './popular_3wheeler.jpg'
-import p3_img from './popular_4wheeler.jpg'
+import p32_img from './popular_4wheeler.jpg'
 // import p4_img from './product_4.png'
 
 let data_product = [
   {
-    id: 1,
+    id: 14,
     name: "Two Wheeler Vehicle  of all companies in India",
-    image: p1_img,
+    image: p14_img,
     new_price: 50.00,
     old_price: 80.50,
   },
@@ -19,9 +19,9 @@ let data_product = [
     old_price: 120.50,
   },
   {
-    id: 3,
+    id: 32,
     name: "Four Wheeler Vehicle  of all companies in India",
-    image: p3_img,
+    image: p32_img,
     new_price: 60.00,
     old_price: 100.50,
   },
