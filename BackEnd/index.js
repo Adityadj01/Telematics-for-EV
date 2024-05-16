@@ -13,6 +13,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const MongoClient = require('mongodb').MongoClient;
+const userSchema = require('./models/ProfileModel')
 
 //establishing a connection to a MongoDB database hosted on MongoDB Atlas.
 mongoose.connect("mongodb+srv://telematics:Evdiagnose@cluster0.jnx3h5g.mongodb.net/EVDiagnose?retryWrites=true&w=majority", {
@@ -141,27 +142,9 @@ app.get('/', (req, res) => {
 // Other routes and middleware definitions go here
 
 
-// schema creating for users
+// model creating for users
+const Users = mongoose.model('User', userSchema);
 
-  const Users= mongoose.model('Users',{
-    name: {
-       type: String,
-    },
-    email:{
-        type:String , 
-        unique:true,
-    },
-    password:{
-        type : String,
-    },
-    vehicleData:{
-        type : Object,
-    },
-    date : {
-        type : Date,
-        default : Date.now,
-    }
-  })
 
 //Creating Endpoint for registering the user
 
@@ -230,7 +213,22 @@ app.post( '/login' , async (req,res)=>{
         res.json({success: false, error:'Wrong Email ID'})
     }
 })
+app.post('/update', async (req, res) => {
+  try {
+    const user = await Users.findById(req.body.id);
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
 
+    Object.assign(user, req.body.updates);
+    await user.save();
+
+    res.json({ success: true, message: 'Profile updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
 // Start the server
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {

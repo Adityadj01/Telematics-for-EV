@@ -129,7 +129,7 @@ function ProfilePage() {
     <div className="container">
       <img src={profile.photo || 'https://via.placeholder.com/150'} alt="Profile Photo" className="profile-photo" />
       <h1>{profile.name || 'Unknown'}</h1>
-      <h6>{profile.id || 'Unknown'}</h6>
+      
       {isEditMode ? (
         <button onClick={handleSave}>Save</button>
       ) : (
