@@ -201,13 +201,7 @@ app.post('/signup',async(req,res)=> {
         }
     }
    
-    const token = jwt.sign(data,'secret_eVD',{expiresIn: "2h"});
-    res.cookie("token",token,{
-      httpOnly:true,
-        secure:true,
-        sameSite:"none"
-    }
-  )
+    const token = jwt.sign(data,'secret_eVD');
     res.json({success : true, token})
         
 })
@@ -223,14 +217,7 @@ app.post( '/login' , async (req,res)=>{
                     id : user.id
                 }
             }
-            const token = jwt.sign(data,'secret_eVD',{expiresIn: "2h"});
-            res.cookie("token",token,{
-                  httpOnly:true,
-                    secure:true,
-                    sameSite:"none"
-                }
-              )
-
+            const token = jwt.sign(data,'secret_eVD');
             res.json({success : true, token})
         }else{
             res.json({success:false,error:"Wrong Password"});
