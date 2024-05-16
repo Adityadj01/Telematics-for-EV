@@ -213,22 +213,35 @@ app.post( '/login' , async (req,res)=>{
         res.json({success: false, error:'Wrong Email ID'})
     }
 })
-app.post('/update', async (req, res) => {
+app.put('/update', async (req, res) => {
+  console.log('Request method:', req.method);
+  console.log('Request headers:', req.headers);
+  console.log('Request body:', req.body);
   try {
-    const user = await Users.findById(req.body.id);
+    console.log("Received update request:", req.body); // Log the received request
+
+    const userId = req.body.id;
+    const updates = req.body.updates; // This now correctly refers to the updates object
+
+    if (!userId ||!updates) {
+      return res.status(400).json({ success: false, error: 'Invalid request' });
+    }
+
+    const user = await Users.findByIdAndUpdate(userId, updates, { new: true }); // Use findByIdAndUpdate with $set
     if (!user) {
       return res.status(404).json({ success: false, error: 'User not found' });
     }
 
-    Object.assign(user, req.body.updates);
-    await user.save();
+    console.log("Updated user:", user._id, "with updates:", updates); // Log the update operation
 
     res.json({ success: true, message: 'Profile updated successfully' });
   } catch (error) {
-    console.error(error);
+    console.error("Update failed:", error.message); // Log the actual error message
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
+
+app.use(express.json());
 // Start the server
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {

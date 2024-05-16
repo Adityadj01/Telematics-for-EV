@@ -1,113 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import './CSS/ProfilePage.css';
 
-function ProfileInfo({ profile, isEditMode, onChange }) {
+const ProfileInfo = ({ profile, isEditMode, onChange }) => {
+  const fields = [
+    { label: 'First Name:', value: profile.fname, name: 'fname' },
+    { label: 'Middle Name:', value: profile.mname, name: 'mname' },
+    { label: 'Last Name:', value: profile.lname, name: 'lname' },
+    { label: 'Address:', value: profile.address, name: 'address' },
+    { label: 'Email:', value: profile.email, name: 'email' },
+    { label: 'Date of Birth:', value: profile.dateOfBirth, name: 'dateOfBirth' },
+    { label: 'Gender:', value: profile.gender, name: 'gender' },
+    { label: 'Vehicle Registration No:', value: profile.vehicleregno, name: 'vehicleregno' },
+    { label: 'Insurance ID:', value: profile.insuranceid, name: 'insuranceid' },
+  ];
+
   return (
     <div className="info">
-      <div className="info-item">
-        <div className="info-label">First Name:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.fname} onChange={onChange('fname')} />
-          ) : (
-            profile.fname || 'Not available'
-          )}
+      {fields.map((field) => (
+        <div key={field.name} className="info-item">
+          <div className="info-label">{field.label}</div>
+          <div className="info-value">
+            {isEditMode ? (
+              <input
+                type={field.name === 'dateOfBirth' ? 'date' : 'text'}
+                value={field.value}
+                onChange={onChange(field.name)}
+              />
+            ) : (
+              field.value || 'Not available'
+            )}
+          </div>
         </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Middle Name:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.mname} onChange={onChange('mname')} />
-          ) : (
-            profile.mname || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Last Name:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.lname} onChange={onChange('lname')} />
-          ) : (
-            profile.lname || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Address:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.address} onChange={onChange('address')} />
-          ) : (
-            profile.address || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Email:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.email} onChange={onChange('email')} />
-          ) : (
-            profile.email || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Date of Birth:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.dateOfBirth} onChange={onChange('dateOfBirth')} />
-          ) : (
-            profile.dateOfBirth || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Gender:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.gender} onChange={onChange('gender')} />
-          ) : (
-            profile.gender || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Vehicle Registration No:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.vehicleregno} onChange={onChange('vehicleregno')} />
-          ) : (
-            profile.vehicleregno || 'Not available'
-          )}
-        </div>
-    </div>
-    <div className="info">
-        <div className="info-label">Insurance ID:</div>
-        <div className="info-value">
-          {isEditMode ? (
-            <input type="text" value={profile.insuranceid} onChange={onChange('insuranceid')} />
-          ) : (
-            profile.insuranceid || 'Not available'
-          )}
-        </div>
-      </div>
+      ))}
     </div>
   );
-}
+};
 
-function ProfilePage() {
+const ProfileHeader = ({ profile }) => {
+  return (
+    <div className="header">
+      <img src={profile.photo || 'https://via.placeholder.com/150'} alt="Profile Photo" className="profile-photo" />
+      <h1>{profile.name || 'Unknown'}</h1>
+      <h6>{profile.id || 'Unknown'}</h6>
+    </div>
+  );
+};
+
+const ProfileActions = ({ isEditMode, handleEdit, handleSave }) => {
+  return (
+    <div className="actions">
+      {isEditMode ? (
+        <button onClick={handleSave}>Save</button>
+      ) : (
+        <button onClick={handleEdit}>Edit</button>
+      )}
+    </div>
+  );
+};
+
+const ProfilePage = () => {
   const [profile, setProfile] = useState({});
   const [isEditMode, setIsEditMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('auth-token');
     if (token) {
       const decodedToken = jwtDecode(token);
-      console.log('Decoded Token:', decodedToken); // Log the decoded token to the console
       setProfile(decodedToken.user);
     }
   }, []);
@@ -116,28 +76,58 @@ function ProfilePage() {
     setIsEditMode(true);
   };
 
-  const handleSave = () => {
-    // TO DO: Implement saving the updated profile information
-    setIsEditMode(false);
-  };
+  const handleSave = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:4000/update', {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({
+          id: profile.id, // Assuming profile has an id property
+          updates: {
+            fname: profile.fname,
+            mname: profile.mname,
+            lname: profile.lname,
+            address: profile.address,
+            email: profile.email,
+            dateOfBirth: profile.dateOfBirth,
+            gender: profile.gender,
+            vehicleregno: profile.vehicleregno,
+            insuranceid: profile.insuranceid,
+          },
+        }),
+      });
+  
+      if (response.ok) {
+        setIsEditMode(false);
+        alert('Profile updated successfully!');
+      } else {
+        alert('Error updating profile!');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      alert('Error updating profile!');
+    } finally {
+      setLoading(false);
+    }
+  };  
 
   const handleChange = (field) => (event) => {
-    setProfile({ ...profile, [field]: event.target.value });
+    setProfile((prevProfile) => ({ ...prevProfile, [field]: event.target.value }));
   };
 
   return (
     <div className="container">
-      <img src={profile.photo || 'https://via.placeholder.com/150'} alt="Profile Photo" className="profile-photo" />
-      <h1>{profile.name || 'Unknown'}</h1>
-      <h6>{profile.id || 'Unknown'}</h6>
-      {isEditMode ? (
-        <button onClick={handleSave}>Save</button>
-      ) : (
-        <button onClick={handleEdit}>Edit</button>
-      )}
+      <ProfileHeader profile={profile} />
       <ProfileInfo profile={profile} isEditMode={isEditMode} onChange={handleChange} />
+      <ProfileActions isEditMode={isEditMode} handleEdit={handleEdit} handleSave={handleSave} />
+      {loading && <div>Loading...</div>}
     </div>
   );
-}
+};
 
 export default ProfilePage;
