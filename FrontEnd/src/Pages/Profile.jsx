@@ -38,20 +38,33 @@ const ProfileInfo = ({ profile, isEditMode, onChange }) => {
 };
 
 const ProfileHeader = ({ profile }) => {
+  // Log the photo URL to the console
+  useEffect(() => {
+    console.log(profile.photo);
+  }, [profile]);
+
   return (
     <div className="header">
-      <img src={profile.photo || 'https://via.placeholder.com/150'} alt="Profile Photo" className="profile-photo" />
+      <img 
+        src={profile.photo || 'https://images.pexels.com/photos/8090137/pexels-photo-8090137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} 
+        alt="Profile Photo" 
+        className="profile-photo" 
+      />
       <h1>{profile.name || 'Unknown'}</h1>
       <h6>{profile.id || 'Unknown'}</h6>
     </div>
   );
 };
 
-const ProfileActions = ({ isEditMode, handleEdit, handleSave }) => {
+
+const ProfileActions = ({ isEditMode, handleEdit, handleSave, onCancelEdit }) => {
   return (
     <div className="actions">
-      {isEditMode ? (
-        <button onClick={handleSave}>Save</button>
+      {isEditMode? (
+        <>
+          <button onClick={handleSave}>Save</button>
+          <button onClick={onCancelEdit}>Cancel</button>
+        </>
       ) : (
         <button onClick={handleEdit}>Edit</button>
       )}
@@ -62,6 +75,7 @@ const ProfileActions = ({ isEditMode, handleEdit, handleSave }) => {
 const ProfilePage = () => {
   const [profile, setProfile] = useState({});
   const [isEditMode, setIsEditMode] = useState(false);
+  const [cancelEdit, setCancelEdit] = useState(false); // New state for cancel edit
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -74,6 +88,12 @@ const ProfilePage = () => {
 
   const handleEdit = () => {
     setIsEditMode(true);
+    setCancelEdit(false); // Reset cancelEdit state when entering edit mode
+  };
+
+  const onCancelEdit = () => {
+    setIsEditMode(false);
+    setCancelEdit(false); // Optionally reset cancelEdit state here
   };
 
   const handleSave = async () => {
@@ -124,7 +144,7 @@ const ProfilePage = () => {
     <div className="container">
       <ProfileHeader profile={profile} />
       <ProfileInfo profile={profile} isEditMode={isEditMode} onChange={handleChange} />
-      <ProfileActions isEditMode={isEditMode} handleEdit={handleEdit} handleSave={handleSave} />
+      <ProfileActions isEditMode={isEditMode} handleEdit={handleEdit} handleSave={handleSave} onCancelEdit={onCancelEdit} />
       {loading && <div>Loading...</div>}
     </div>
   );

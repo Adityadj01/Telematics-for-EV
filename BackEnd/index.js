@@ -183,6 +183,16 @@ app.post('/signup',async(req,res)=> {
           id : user._id,
           name: user.name,
           email: user.email,
+          fname: user.fname,
+          mname: user.mname,
+          lname: user.lname,
+          address: user.address,
+          email: user.email,
+          dateOfBirth: user.dateOfBirth,
+          gender: user.gender,
+          vehicleregno: user.vehicleregno,
+          insuranceid: user.insuranceid,
+
         }
     }
    
@@ -199,9 +209,18 @@ app.post( '/login' , async (req,res)=>{
         if (passCompare) {
             const data ={
                 user:{
-                    id : user._id,
-                    name: user.name,
-                    email: user.email,
+                  id : user._id,
+                  name: user.name,
+                  email: user.email,
+                  fname: user.fname,
+                  mname: user.mname,
+                  lname: user.lname,
+                  address: user.address,
+                  email: user.email,
+                  dateOfBirth: user.dateOfBirth,
+                  gender: user.gender,
+                  vehicleregno: user.vehicleregno,
+                  insuranceid: user.insuranceid,
                 }
             }
             const token = jwt.sign(data,'secret_eVD');
