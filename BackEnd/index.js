@@ -57,7 +57,7 @@ if (!fs.existsSync(path.join(__dirname, 'upload', 'images'))) {
 
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser()); // Add this line to your middleware stack
+
 
 
 //API Creation
@@ -144,7 +144,7 @@ app.get('/', (req, res) => {
 // schema creating for users
 
   const Users= mongoose.model('Users',{
-    uname: {
+    name: {
        type: String,
     },
     email:{
@@ -160,15 +160,6 @@ app.get('/', (req, res) => {
     date : {
         type : Date,
         default : Date.now,
-    },
-    address: {
-      type : String,
-    },
-    dateOfBirth: {
-      type : Date,
-    },
-    gender: {
-      type : String,
     }
   })
 
@@ -184,117 +175,89 @@ app.post('/register',function(req,res){
         })
     })
 
-    app.post('/signup',async(req,res)=> {
-      let check = await Users.findOne({email:req.body.email});
-      if(check) {
-          return res.status(400).json({success:false,error:"Existing email found with same email"})
-      }
-      let vehicle = {};
-  
-      for (let i = 0; i < 3; i++) {
-              vehicle[i] = 0;
-      }
-  
-      const user = new Users({
-          uname : req. body. username,
-          email : req. body. email,
-          password : req. body. password,
-          dateOfBirth : req. body. dateOfBirth,
-          gender : req. body. gender,
-          address : req. body. address,
-          vehicleData : vehicle,
-      })
-  
-      await user.save();
-  
-      const data={
-          user: {
-              id:user._id,
-              dateOfBirth: user.dateOfBirth,
-              gender: user.gender,
-              uname: user.uname,
-              address: user.address
-          }
-      }
-      const token = jwt.sign(data,'secret_eVD',{expiresIn: "2h"});
-      // Add the following lines to create the cookie
-      res.cookie("token", token, {
-        httpOnly: false,
-        secure: false,
-      sameSite: "none",
-        maxAge: 7200000 // Sets the cookie to expire after 2 hours (in milliseconds)
-    }); 
-      res.json({success : true, token})
-          
-  })
-  
-  app.use(bodyParser.json());
-  
-  app.put('/api/profile/:id', async (req, res) => {
-    try {
-      const updatedProfile = await Users.findByIdAndUpdate(
-        req.params._id,
-        req.body,
-        { new: true }
-      );
-      res.json(updatedProfile);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to update profile data' });
+app.post('/signup',async(req,res)=> {
+    let check = await Users.findOne({email:req.body.email});
+    if(check) {
+        return res.status(400).json({success:false,error:"Existing email found with same email"})
     }
-  });
-  
-  app.post( '/login' , async (req,res)=>{
-  
-      let user= await Users.findOne({email:req.body.email});
-      if(user){
-          const passCompare= req.body.password===user.password;
-          if (passCompare) {
-            const data={
-                  user: {
-                      id:user._id,
-                      dateOfBirth: user.dateOfBirth,
-                      gender: user.gender,
-                      uname: user.uname,
-                      address: user.address
-                  }
-              }
-              const token = jwt.sign(data,'secret_eVD',{expiresIn: "2h"});
-  
-              // Add the following lines to create the cookie
-              res.cookie("token", token, {
-                  httpOnly: false,
-                  secure: false,
-                sameSite: "none",
-                  maxAge: 7200000 // Sets the cookie to expire after 2 hours (in milliseconds)
-              });
-  
-              res.json({success : true, token})
-          }else{
-              res.json({success:false,error:"Wrong Password"});
-          }
-      }else{
-          res.json({success: false, error:'Wrong Email ID'})
-      }
-  });
-  
-  // Start the server
-  const PORT = process.env.PORT || 3002;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-  const http = require('http');
-  
-  const server = http.createServer((req, res) => {
-      let filePath = path.join(__dirname, 'index.html');
-  
-      fs.readFile(filePath, (err, data) => {
-          if (err) {
-              res.writeHead(404);
-              res.end('File not found!');
-              return;
-          }
-  
-          res.writeHead(200, { 'Content-Type': 'text/html' });
-          res.end(data);
-      });
-  });
+    let vehicle = {};
+
+    for (let i = 0; i < 3; i++) {
+            vehicle[i] = 0;
+    }
+
+    const user = new Users({
+        name : req. body. username,
+        email : req. body. email,
+        password : req. body. password,
+        vehicleData : vehicle,
+    })
+
+    await user.save();
+
+    const data={
+        user: {
+            id:user.id
+        }
+    }
+   
+    const token = jwt.sign(data,'secret_eVD',{expiresIn: "2h"});
+    res.cookie("token",token,{
+      httpOnly:true,
+        secure:true,
+        sameSite:"none"
+    }
+  )
+    res.json({success : true, token})
+        
+})
+// Creating Endpoint for user Login
+app.post( '/login' , async (req,res)=>{
+
+    let user= await Users.findOne({email:req.body.email});
+    if(user){
+        const passCompare= req.body.password===user.password;
+        if (passCompare) {
+            const data ={
+                user:{
+                    id : user.id
+                }
+            }
+            const token = jwt.sign(data,'secret_eVD',{expiresIn: "2h"});
+            res.cookie("token",token,{
+                  httpOnly:true,
+                    secure:true,
+                    sameSite:"none"
+                }
+              )
+
+            res.json({success : true, token})
+        }else{
+            res.json({success:false,error:"Wrong Password"});
+        }
+    }else{
+        res.json({success: false, error:'Wrong Email ID'})
+    }
+})
+
+// Start the server
+const PORT = process.env.PORT || 3002;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    let filePath = path.join(__dirname, 'index.html');
+
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(404);
+            res.end('File not found!');
+            return;
+        }
+
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+    });
+});

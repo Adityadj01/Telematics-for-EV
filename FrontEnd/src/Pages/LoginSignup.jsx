@@ -1,6 +1,10 @@
-import { useState } from "react";
-import "./CSS/LoginSignup.css";
+import {useState} from 'react'
+import './CSS/LoginSignup.css'
 
+/* The `const LoginSignup = () => { ... }` function is a React functional component in JavaScript. It
+defines a component called `LoginSignup` that represents a sign-up form UI. Inside the component, it
+returns JSX (a syntax extension for JavaScript that looks similar to HTML) which describes the
+structure of the sign-up form. */
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
 
@@ -30,8 +34,7 @@ const LoginSignup = () => {
     .catch((error) => console.log('Error', error));
   
     if (responseData && responseData.success) {
-      // Store the token in the cookie
-      document.cookie = `auth-token=${responseData.token}; path=/`;
+      localStorage.setItem('auth-token', responseData.token);
       window.location.replace('/');
     }else{
       alert(responseData.error)
@@ -54,8 +57,7 @@ const LoginSignup = () => {
     .catch((error) => console.log('Error', error));
   
     if (responseData && responseData.success) {
-      // Store the token in the cookie
-      document.cookie = `auth-token=${responseData.token}; path=/`;
+      localStorage.setItem('auth-token', responseData.token);
       window.location.replace('/');
     }else{
       alert(responseData.error)
@@ -99,7 +101,8 @@ const LoginSignup = () => {
         {state === "Sign up" ? (
           <p className="loginsignup-login">
             Already have an account?{" "}
-            <span onClick={() => { setState("Login") }}>Login here</span></p>
+            <span onClick={() => { setState("Login") }}>Login here</span>
+          </p>
         ) : (
           <p className="loginsignup-login">
             Create an account?{" "}
