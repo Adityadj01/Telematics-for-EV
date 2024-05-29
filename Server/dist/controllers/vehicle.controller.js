@@ -20,15 +20,15 @@ const getAllVehicles = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getAllVehicles = getAllVehicles;
 const getVehicleData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = {
-        battery: '85',
-        temperature: '180',
-        avgSpeed: '178',
+        battery: '65',
+        temperature: '140',
+        avgSpeed: '88',
         maxSpeed: '90',
         time: '12:30',
         currentSpeed: '87',
-        totalDistance: "20",
+        totalDistance: "50",
         avgFuel: '54',
-        startl: "hubli",
+        startl: "Hubballi",
         endl: "dharwad",
     };
     return res.status(200).send({ data: data });

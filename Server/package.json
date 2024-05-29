@@ -14,7 +14,7 @@
     "express",
     "mongoDB"
   ],
-  "author": "shamil-t",
+  "author": "EVDiagnose",
   "license": "MIT",
   "dependencies": {
     "@types/cors": "^2.8.13",

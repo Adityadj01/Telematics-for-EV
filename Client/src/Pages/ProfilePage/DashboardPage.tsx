@@ -111,7 +111,7 @@ export const DashboardPage = () => {
                             <div className="mt-5 pt-4">
                                 <div className="d-flex ps-3 fs-4" style={{height: '90px'}}>{data.totalDistance} KM
                                 </div>
-                                <div className="d-flex ps-3 fs-4" style={{height: '80px'}}>{data.avgFuel} kmpl</div>
+                                <div className="d-flex ps-3 fs-4" style={{height: '80px'}}>{data.avgFuel} kmpc</div>
                                 <div className="d-flex ps-3 fs-4 pt-2" style={{height: '100px'}}>{data.avgSpeed} kmph
                                 </div>
                             </div>
