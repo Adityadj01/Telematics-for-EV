@@ -148,7 +148,7 @@ export const ProfileEditPage = () => {
         })
 
     };
-
+    
     const handleChange = (field: string) => (event: ChangeEvent<HTMLInputElement>) => {
         setProfile((prevProfile) => ({...prevProfile, [field]: event.target.value})); 
     };

@@ -56,8 +56,8 @@ export const DashboardPage = () => {
          style={{height: '30%', minHeight: '150px'}}>
         {/* Displaying Start Location and End Location with Arrow Mark */}
         <div className="d-flex flex-row justify-content-between text-white"
-             style={{paddingBottom: '15px',fontSize: '25px',alignContent: 'center'}}>
-            <div style={{width: '300px'}}
+             style={{paddingBottom: '30px',paddingLeft:'90px',fontSize: '25px'}}>
+            <div style={{alignContent:'center'}}
                  className="d-flex flex-row justify-content-end ps-3">
                 {data.startl} <span className="ps-1 text-secondary">→→</span> {data.endl}
             </div>
