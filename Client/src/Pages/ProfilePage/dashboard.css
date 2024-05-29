@@ -1,0 +1,33 @@
+
+.dashboard {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 1200px;
+    min-height: 600px;
+    margin-top: 10%;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url("../../assets/dashboard_1x2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    object-fit: cover;
+}
+
+.vector {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vector70 {
+
+}
+
+.road-bg {
+
+}
