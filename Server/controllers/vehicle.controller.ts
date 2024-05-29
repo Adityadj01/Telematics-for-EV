@@ -7,14 +7,14 @@ export const getAllVehicles = async (req: Request, res: Response) => {
 
 export const getVehicleData = async (req: Request, res: Response) => {
     const data = {
-        battery: '65',
+        battery: '25',
         temperature: '140',
-        avgSpeed: '88',
+        avgSpeed: '68',
         maxSpeed: '90',
         time: '12:30',
-        currentSpeed: '87',
+        currentSpeed: '47',
         totalDistance: "50",
-        avgFuel: '54',
+        avgFuel: '14',
         startl:"Hubballi",
         endl:"dharwad",
     }
