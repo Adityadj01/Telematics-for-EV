@@ -16,7 +16,7 @@ export const getVehicleData = async (req: Request, res: Response) => {
         totalDistance: "20",
         avgFuel: '54',
         startl:"hubli",
-        endl:"dhad",
+        endl:"dharwad",
     }
     return res.status(200).send({data: data})
 }

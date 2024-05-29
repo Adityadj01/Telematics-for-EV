@@ -29,7 +29,7 @@ const getVehicleData = (req, res) => __awaiter(void 0, void 0, void 0, function*
         totalDistance: "20",
         avgFuel: '54',
         startl: "hubli",
-        endl: "dhad",
+        endl: "dharwad",
     };
     return res.status(200).send({ data: data });
 });
