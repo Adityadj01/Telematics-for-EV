@@ -35,16 +35,23 @@ export const DashboardPage = () => {
 
     // Function to determine driving behavior
     const determineDrivingBehavior = () => {
-        const { avgSpeed, maxSpeed, currentSpeed, battery, avgFuel} = data;
-        // Check if either avgSpeed or currentSpeed is less than 80% of maxSpeed to classify as rash
-        if ((parseInt(maxSpeed) * 0.8 < parseInt(avgSpeed)) || (parseInt(maxSpeed) * 0.8 < parseInt(currentSpeed))||parseInt(avgFuel)<100) {
+        const { avgSpeed, maxSpeed, currentSpeed, battery, avgFuel } = data;
+    
+        // Check for invalid data conditions
+        if (parseInt(currentSpeed) > parseInt(maxSpeed) || parseInt(maxSpeed) < parseInt(avgSpeed) || parseInt(battery) > 100) {
+            return "Invalid Data";
+        }
+    
+        // Determine driving behavior based on valid conditions
+        if ((parseInt(currentSpeed) > parseInt(maxSpeed) * 0.8)||parseInt(avgFuel)<100 ||(parseInt(maxSpeed) * 0.8 < parseInt(avgSpeed))) { // Driving close to max speed
             return "Rash";
-        } else if ((parseInt(currentSpeed) < parseInt(avgSpeed) * 0.6)||(parseInt(battery)<20)) {
+        } else if (parseInt(currentSpeed) < parseInt(avgSpeed) * 0.6 || parseInt(battery) < 20 ||(parseInt(maxSpeed) * 0.25 > parseInt(avgSpeed))) { // Slow driving or low battery
             return "Poor";
         } else {
             return "Good";
         }
     };
+    
     
     return (
         <>
@@ -99,9 +106,16 @@ export const DashboardPage = () => {
                         <div className="text-white fw-medium text-center">
                             {data.time}
                         </div>
+                        {/*Inside your DashboardPage component, find the section where driving behavior is displayed*/}
                         <div className="text-info fw-bold d-flex flex-column align-items-center">
-                            {/* Display driving behavior */}
-                            <div className="mb-3">{determineDrivingBehavior()}</div>
+                            {/* Display driving behavior with dynamic color in RGB format */}
+                            <div className="mb-2" style={{
+                                fontSize: '32px',
+                                color: determineDrivingBehavior() === "Rash"? "rgb(255, 0, 0)" : // Red for Rash
+                                    determineDrivingBehavior() === "Poor"? "rgb(255, 255, 0)" : // Yellow for Poor
+                                    determineDrivingBehavior() === "Invalid Data"? "rgba(255, 255, 255,1)" :
+                                    "rgb(0, 128, 0)" // Green for Good
+                            }}>{determineDrivingBehavior()}</div>
                             <div style={{ fontSize: '56px' }}>
                                 {data.currentSpeed}
                             </div>
