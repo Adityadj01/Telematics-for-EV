@@ -37,7 +37,7 @@ export const DashboardPage = () => {
     const determineDrivingBehavior = () => {
         const { avgSpeed, maxSpeed, currentSpeed, battery, avgFuel} = data;
         // Check if either avgSpeed or currentSpeed is less than 80% of maxSpeed to classify as rash
-        if ((parseInt(maxSpeed) * 0.8 < parseInt(avgSpeed)) || (parseInt(maxSpeed) * 0.8 < parseInt(currentSpeed))||parseInt(avgFuel)<20) {
+        if ((parseInt(maxSpeed) * 0.8 < parseInt(avgSpeed)) || (parseInt(maxSpeed) * 0.8 < parseInt(currentSpeed))||parseInt(avgFuel)<100) {
             return "Rash";
         } else if ((parseInt(currentSpeed) < parseInt(avgSpeed) * 0.6)||(parseInt(battery)<20)) {
             return "Poor";
