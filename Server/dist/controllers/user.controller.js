@@ -45,7 +45,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 token: jsonwebtoken_1.default.sign({
                     email: user.email,
                     id: user._id,
-                }, "EVDiagnoseV2", { expiresIn: "24h" })
+                }, "EVDiagnose", { expiresIn: "24h" })
             };
             res.status(201).send({ message: 'User created successfully', data: _user });
         }
@@ -74,7 +74,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 token: jsonwebtoken_1.default.sign({
                     email: user.email,
                     id: user._id,
-                }, "EVDiagnoseV2", { expiresIn: "24h" })
+                }, "EVDiagnose", { expiresIn: "24h" })
             };
             res.status(200).send({ msg: 'login successfully', data: _user });
         }

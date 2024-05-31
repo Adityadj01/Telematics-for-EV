@@ -1,6 +1,6 @@
-import './Hero.css'
-import arrow_icon from '../../assets/arrow.png'
-import hero_clip from '../../assets/hero_videoclip.mp4'
+import './Hero.css';
+import arrow_icon from '../../assets/arrow.png';
+import hero_clip from '../../assets/hero_videoclip.mp4';
 
 export const Hero = () => {
     return (
@@ -9,25 +9,27 @@ export const Hero = () => {
                 <h2>EV Condition Control</h2>
                 <div>
                     <div className="hero-hand-icon">
-                        <p>Revolutionize </p>
+                        <p>Revolutionize your EV experience with precision diagnostics</p>
                         {/* <img src={hand_icon} alt="" /> */}
-
                     </div>
-                    <p>your EV experience </p>
-                    <p>with precision diagnostics</p>
+                    <p></p>
                 </div>
+                {/* Wrap the "Latest Updates" section in an anchor tag for redirection */}
                 <div className="hero-latest-btn">
-                    <div>Latest Updates</div>
-                    <img src={arrow_icon} alt=""/>
+                    <a href="https://insideevs.com/news/" target="_self" rel="noopener noreferrer">
+                        <div>Latest Updates
+                        <img src={arrow_icon} alt=""/>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div className="hero-right">
-                {/* <img src={hero_image} alt="" /> */}
-                <video autoPlay loop muted>
-                    <source src={hero_clip} type="video/mp4"/>
-
-
-                </video>
+                {/* Existing video section */}
+                <a href="https://youtu.be/La8vsNO4bdI" target="_blank" rel="noopener noreferrer">
+                    <video autoPlay loop muted>
+                        <source src={hero_clip} type="video/mp4"/>
+                    </video>
+                </a>
             </div>
         </div>
     );

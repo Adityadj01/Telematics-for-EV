@@ -38,7 +38,7 @@ const createUser = async (req: Request, res: Response) => {
                 token: jwt.sign({
                     email: user.email,
                     id: user._id,
-                }, "EVDiagnoseV2", {expiresIn: "24h"})
+                }, "EVDiagnose", {expiresIn: "24h"})
             }
             res.status(201).send({message: 'User created successfully', data: _user});
         } catch (err) {
@@ -68,7 +68,7 @@ const loginUser = async (req: Request, res: Response) => {
                 token: jwt.sign({
                     email: user.email,
                     id: user._id,
-                }, "EVDiagnoseV2", {expiresIn: "24h"})
+                }, "EVDiagnose", {expiresIn: "24h"})
             }
             res.status(200).send({msg: 'login successfully', data: _user})
         } catch (err: any) {

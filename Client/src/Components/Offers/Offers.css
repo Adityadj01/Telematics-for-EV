@@ -1,11 +1,11 @@
 .offers{
     margin: 100px auto;
-    width: 65%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 8%;
+    padding: 20px;
     margin-bottom: 150px;
     background: linear-gradient(180deg, #fde1ff 0%,#e1ffea22 60%);;
 }
@@ -34,7 +34,7 @@
 }
 .offers-right img{
     width: 500px;
-    padding-top: 20px;
+    padding-top: 10%;
     padding-right: 0px;
 }
 
@@ -60,7 +60,7 @@
 }
 @media(max-width:1024px){
     .offers-right img{
-        width: 200px;
+        width: 300px;
     }
 }
 @media(max-width:800px){
