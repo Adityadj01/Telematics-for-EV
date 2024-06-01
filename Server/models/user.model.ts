@@ -9,7 +9,8 @@ interface IUser extends Document {
     dateOfBirth: string,
     gender: string,
     vehicleRegNo: string,
-    insuranceId: string
+    insuranceId: string,
+    drivingLicense: String
 }
 
 const userSchema: Schema = new Schema<IUser>({
@@ -20,7 +21,8 @@ const userSchema: Schema = new Schema<IUser>({
     dateOfBirth: Date,
     gender: String,
     vehicleRegNo: String,
-    insuranceId: String
+    insuranceId: String,
+    drivingLicense: String
 })
 
 const User = model<IUser>('users', userSchema)

@@ -8,5 +8,6 @@ export interface UserType {
     dateOfBirth: string,
     gender: string,
     vehicleRegNo: string,
-    insuranceId: string
+    insuranceId: string,
+    drivingLicense: string
 }

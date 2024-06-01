@@ -10,7 +10,8 @@ const userSchema = new mongoose_1.Schema({
     dateOfBirth: Date,
     gender: String,
     vehicleRegNo: String,
-    insuranceId: String
+    insuranceId: String,
+    drivingLicense: String
 });
 const User = (0, mongoose_1.model)('users', userSchema);
 exports.User = User;

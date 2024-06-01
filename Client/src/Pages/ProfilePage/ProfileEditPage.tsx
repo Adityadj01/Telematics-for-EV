@@ -19,6 +19,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         {label: 'Gender:', value: props.profile.gender, name: 'gender'},
         {label: 'Registration No:', value: props.profile.vehicleRegNo, name: 'vehicleRegNo'},
         {label: 'Insurance ID:', value: props.profile.insuranceId, name: 'insuranceId'},
+        {label: 'Driving License:', value: props.profile.drivingLicense, name: 'drivingLicense'},
     ];
 
     return (
@@ -98,8 +99,10 @@ export const ProfileEditPage = () => {
         insuranceId: "",
         name: "",
         password: "",
-        vehicleRegNo: ""
+        vehicleRegNo: "",
+        drivingLicense: "", // Added drivingLicense field
     });
+    
     const [isEditMode, setIsEditMode] = useState(false);
     const [, setCancelEdit] = useState(false);
     const [loading, setLoading] = useState(false);
