@@ -4,7 +4,6 @@ import {registerUser, userLogin} from "../Services/AuthService.tsx";
 
 export const AuthenticationPage = () => {
     const [state, setState] = useState("Login");
-    const [errMsg, setErrMsg] = useState('');
 
     const [formData, setFormData] = useState({
         name: "",
@@ -14,7 +13,6 @@ export const AuthenticationPage = () => {
 
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({...formData, [e.target.name]: e.target.value});
-        setErrMsg('');
     };
 
     const login = async () => {
@@ -25,7 +23,7 @@ export const AuthenticationPage = () => {
             window.location.replace('/');
         }).catch((err) => {
             console.log(err)
-            setErrMsg(err.response.data.msg)
+            showAlert(err.response.data.msg); // Use showAlert function to display the error message
         });
     };
 
@@ -37,8 +35,13 @@ export const AuthenticationPage = () => {
             window.location.replace('/');
         }).catch((err) => {
             console.log(err)
-            setErrMsg(err.response.data.msg)
+            showAlert(err.response.data.msg); // Use showAlert function to display the error message
         })
+    };
+
+    // Function to display the error message as a popup
+    const showAlert = (message: string) => {
+        alert(message);
     };
 
     return (
@@ -46,7 +49,7 @@ export const AuthenticationPage = () => {
             <div className="loginsignup-container">
                 <h1>{state}</h1>
                 <div className="loginsignup-fields">
-                    {state === "Sign up" ? (
+                    {state === "Sign up"? (
                         <>
                             <input
                                 name="name"
@@ -74,14 +77,11 @@ export const AuthenticationPage = () => {
                         placeholder="Password"
                     />
                 </div>
-                <div className="err-msg">
-                    {errMsg}
-                </div>
                 <button onClick={() => {
-                    state === "Login" ? login() : signup()
+                    state === "Login"? login() : signup()
                 }}>Continue
                 </button>
-                {state === "Sign up" ? (
+                {state === "Sign up"? (
                     <p className="loginsignup-login">
                         Already have an account?{" "}
                         <span onClick={() => {
@@ -93,7 +93,6 @@ export const AuthenticationPage = () => {
                         Create an account?{" "}
                         <span onClick={() => {
                             setState("Sign up")
-                            setErrMsg('')
                         }}>Click here</span>
                     </p>
                 )}
