@@ -48,6 +48,12 @@ export const NavBar = () => {
                     <li onClick={() => {
                         setMenu("4wheeler")
                     }}><Link to='4wheeler' className={menu === "4wheeler" ? 'active' : ''}>4 Wheeler</Link></li>
+                    <li onClick={() => {
+                        setMenu("Weather")
+                    }}><Link to='Weather' className={menu === "Weather" ? 'active' : ''}>Weather</Link></li>
+                    <li onClick={() => {
+                        setMenu("Map")
+                    }}><Link to='Map' className={menu === "Map" ? 'active' : ''}>Map</Link></li>
                 </ul>
                 <div className="nav-login-vehicle">
                     {user ?

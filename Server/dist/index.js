@@ -17,7 +17,7 @@ app.on('error', (err) => {
 // @ts-ignore
 mongoose_1.default.connect(process.env.MONGO_DB_URL)
     .then(r => {
-    console.log('Connected with local MongoDB 👍');
+    console.log('Connected with MongoDB 👍');
 })
     .catch((err) => console.log(err));
 app.use('/api/v2/user/', require('./routes/user.route'));

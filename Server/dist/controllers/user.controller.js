@@ -25,12 +25,12 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const { name, email, password } = req.body;
     // Validate request
     if (!name || !email || !password) {
-        return res.status(400).send({ msg: 'Name, email, and password are required' });
+        return res.status(400).send({ message: 'Name, email, and password are required' });
     }
     try {
         const existingUser = yield user_model_1.User.findOne({ email: email });
         if (existingUser) {
-            return res.status(409).send({ msg: 'User with the same email already exists' });
+            return res.status(409).send({ message: 'User with the same email already exists' });
         }
         const newUser = new user_model_1.User({
             name: name,

@@ -18,7 +18,7 @@ app.on('error', (err) => {
 // @ts-ignore
 mongoose.connect(process.env.MONGO_DB_URL)
     .then(r => {
-        console.log('Connected with local MongoDB 👍')
+        console.log('Connected with MongoDB 👍')
     })
     .catch((err) => console.log(err))
 
