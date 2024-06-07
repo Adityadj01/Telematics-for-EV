@@ -7,7 +7,7 @@ const getAllUsers = async (req: Request, res: Response) => {
     await User.find({})
         .then((u) =>
             res.status(200).send({data: u}))
-        .catch((err) => res.send({msg: err.message}))
+        .catch((err) => res.send({msg: err.msg}))
 }
 
 const createUser = async (req: Request, res: Response) => {
@@ -16,13 +16,13 @@ const createUser = async (req: Request, res: Response) => {
 
     // Validate request
     if (!name || !email || !password) {
-        return res.status(400).send({message: 'Name, email, and password are required'});
+        return res.status(400).send({msg: 'Name, email, and password are required'});
     }
 
     try {
         const existingUser = await User.findOne({email: email});
         if (existingUser) {
-            return res.status(409).send({message: 'User with the same email already exists'});
+            return res.status(409).send({msg: 'User with the same email already exists'});
         }
 
         const newUser = new User({
@@ -40,12 +40,12 @@ const createUser = async (req: Request, res: Response) => {
                     id: user._id,
                 }, "EVDiagnose", {expiresIn: "24h"})
             }
-            res.status(201).send({message: 'User created successfully', data: _user});
+            res.status(201).send({msg: 'User created successfully', data: _user});
         } catch (err) {
 
         }
     } catch (err: any) {
-        res.status(500).send({message: 'Failed to create user', error: err.message});
+        res.status(500).send({msg: 'Failed to create user', error: err.msg});
     }
 };
 
@@ -72,7 +72,7 @@ const loginUser = async (req: Request, res: Response) => {
             }
             res.status(200).send({msg: 'login successfully', data: _user})
         } catch (err: any) {
-            res.status(500).send({msg: 'Failed to login', error: err.message});
+            res.status(500).send({msg: 'Failed to login', error: err.msg});
         }
     }
 }
@@ -83,12 +83,12 @@ const getUserById = async (req: Request, res: Response) => {
     try {
         const user = await User.findById(userId);
         if (!user) {
-            return res.status(404).json({message: 'User not found'});
+            return res.status(404).json({msg: 'User not found'});
         }
 
         res.status(200).json({data: user});
     } catch (err: any) {
-        res.status(500).json({message: err.message});
+        res.status(500).json({msg: err.msg});
     }
 };
 
@@ -100,16 +100,16 @@ const updateUserById = async (req: Request, res: Response) => {
     try {
         const user = await User.findById(userId);
         if (!user) {
-            return res.status(404).json({message: 'User not found'});
+            return res.status(404).json({msg: 'User not found'});
         }
 
         Object.assign(user, updateData);
 
         await user.save();
 
-        res.status(200).json({message: 'User updated successfully', data: user});
+        res.status(200).json({msg: 'User updated successfully', data: user});
     } catch (err: any) {
-        res.status(500).json({message: err.message});
+        res.status(500).json({msg: err.msg});
     }
 };
 

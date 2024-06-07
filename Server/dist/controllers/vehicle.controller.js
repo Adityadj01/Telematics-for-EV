@@ -20,7 +20,7 @@ const getAllVehicles = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getAllVehicles = getAllVehicles;
 const getVehicleData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = {
-        battery: '25',
+        battery: '35',
         temperature: '140',
         avgSpeed: '28',
         maxSpeed: '90',
