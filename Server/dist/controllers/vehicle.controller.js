@@ -22,13 +22,13 @@ const getVehicleData = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const data = {
         battery: '35',
         temperature: '140',
-        avgSpeed: '28',
+        avgSpeed: '45',
         maxSpeed: '90',
         time: '12:30',
         currentSpeed: '57',
         totalDistance: "50",
         avgFuel: '140',
-        startl: "Hubballi",
+        startl: "Hubli",
         endl: "dharwad",
     };
     return res.status(200).send({ data: data });
