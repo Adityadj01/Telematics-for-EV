@@ -1,5 +1,5 @@
 import {ChangeEvent, useEffect, useState} from "react";
-import {getUserProfileData, updateUserData} from "../../Services/AuthService.tsx";
+import {deleteUserData, getUserProfileData, updateUserData} from "../../Services/AuthService.tsx";
 import './ProfilePage.css'
 import {ChangeEventHandler, MouseEventHandler} from "react";
 import {UserType} from "../../types/user.type.ts";
@@ -63,10 +63,12 @@ const ProfileHeader = (props: ProfileEditPropsType) => {
 
 interface ProfileActionsPropsType {
     isEditMode: boolean;
-    handleEdit: MouseEventHandler<HTMLButtonElement> | undefined,
-    handleSave: MouseEventHandler<HTMLButtonElement> | undefined,
-    onCancelEdit: () => void,
+    handleEdit: MouseEventHandler<HTMLButtonElement> | undefined;
+    handleSave: MouseEventHandler<HTMLButtonElement> | undefined;
+    onCancelEdit: () => void;
+    onDelete: () => void; 
 }
+
 
 const ProfileActions = (props: ProfileActionsPropsType) => {
     return (
@@ -81,9 +83,14 @@ const ProfileActions = (props: ProfileActionsPropsType) => {
                     </button>
                 </div>
             ) : (
-                <button className="btn btn-sm btn-info" onClick={props.handleEdit}>
-                    <i className="fa-solid fa-pen-to-square pe-2"></i>Edit
-                </button>
+                <>
+                    <button className="btn btn-sm btn-info" onClick={props.handleEdit}>
+                        <i className="fa-solid fa-pen-to-square pe-2"></i>Edit
+                    </button>
+                    <button className="btn btn-danger btn-sm" onClick={props.onDelete}>
+                        <i className="fa-solid fa-trash pe-2"></i>Delete Account
+                    </button>
+                </>
             )}
         </div>
     );
@@ -151,6 +158,21 @@ export const ProfileEditPage = () => {
         })
 
     };
+
+    const handleDelete = async () => {
+        setLoading(true);
+        try {
+            await deleteUserData();
+            setLoading(false);
+            window.location.href = '/login';
+        } catch (error) {
+            console.error('Error deleting profile:', error);
+            alert('Error deleting profile!');
+            setLoading(false);
+        }
+    };
+    
+    
     
     const handleChange = (field: string) => (event: ChangeEvent<HTMLInputElement>) => {
         setProfile((prevProfile) => ({...prevProfile, [field]: event.target.value})); 
@@ -161,7 +183,7 @@ export const ProfileEditPage = () => {
             <ProfileHeader profile={profile}/>
             <ProfileInfo profile={profile} isEditMode={isEditMode} onChange={(e) => handleChange(e)}/>
             <ProfileActions isEditMode={isEditMode} handleEdit={handleEdit} handleSave={handleSave}
-                            onCancelEdit={onCancelEdit}/>
+                            onCancelEdit={onCancelEdit} onDelete={handleDelete}/>
             {loading && <div>Loading...</div>}
         </div>
 

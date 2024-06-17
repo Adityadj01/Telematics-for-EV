@@ -26,3 +26,20 @@ export const updateUserData = (data: UserType) => {
     const user = jwtDecode(localStorage.getItem("token") || '') as UserType;
     return axios.put(`${user_api}${user.id}`, data, {})
 };
+export const deleteUserData = async () => {
+    const user = jwtDecode(localStorage.getItem("token") || '') as UserType;
+    try {
+        const response = await axios.delete(`${API}/user/${user.id}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        console.log("User deleted successfully");
+        return response.data; // Return the response data if needed
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        throw error;
+    }
+};

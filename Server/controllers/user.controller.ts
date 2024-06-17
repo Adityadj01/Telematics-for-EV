@@ -113,4 +113,19 @@ const updateUserById = async (req: Request, res: Response) => {
     }
 };
 
-export {createUser, getAllUsers, loginUser, getUserById, updateUserById}
+const deleteUserById = async (req: Request, res: Response) => {
+    const userId = req.params.userId;
+    try {
+        const result = await User.deleteOne({ _id: userId });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+        res.status(200).json({ msg: 'User deleted successfully' });
+    } catch (err: any) {
+        res.status(500).json({ msg: err.msg });
+    }
+};
+
+exports.deleteUserById = deleteUserById;
+
+export {createUser, getAllUsers, loginUser, getUserById, updateUserById, deleteUserById}
