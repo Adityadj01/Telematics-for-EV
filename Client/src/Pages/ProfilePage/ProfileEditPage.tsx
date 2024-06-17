@@ -84,7 +84,7 @@ const ProfileActions = (props: ProfileActionsPropsType) => {
                 </div>
             ) : (
                 <>
-                    <button className="btn btn-sm btn-info" onClick={props.handleEdit}>
+                    <button className="btn btn-sm btn-info me-5" onClick={props.handleEdit}>
                         <i className="fa-solid fa-pen-to-square pe-2"></i>Edit
                     </button>
                     <button className="btn btn-danger btn-sm" onClick={props.onDelete}>
