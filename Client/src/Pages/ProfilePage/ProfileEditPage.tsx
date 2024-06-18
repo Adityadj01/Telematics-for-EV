@@ -164,6 +164,7 @@ export const ProfileEditPage = () => {
         try {
             await deleteUserData();
             setLoading(false);
+            localStorage.removeItem('token');
             window.location.href = '/login';
         } catch (error) {
             console.error('Error deleting profile:', error);
