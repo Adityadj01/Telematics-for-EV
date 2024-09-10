@@ -4,7 +4,7 @@
   "description": "EVDiagnose api with Mongo DB",
   "main": "index.ts",
   "scripts": {
-    "build": "npm install -g typescript && npx --global tsc",
+    "build": "npm install -g typescript && npx --global tsc --outDir public",
     "start": "node dist/index",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
