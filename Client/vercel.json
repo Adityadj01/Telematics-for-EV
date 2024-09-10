@@ -1,0 +1,57 @@
+{
+    "version": 2,
+    "routes": [
+      {
+        "src": "^/$",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/2wheeler",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/3wheeler",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/4wheeler",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/product",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/product/:productId",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/login",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/weather",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/map",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/profile",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/profile/dashboard",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/profile/carts",
+        "dest": "index.html"
+      },
+      {
+        "src": "^/profile/edit-profile",
+        "dest": "index.html"
+      }
+    ]
+  }
