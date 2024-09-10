@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {UserType} from "./types/user.type.ts";
 import {jwtDecode} from 'jwt-decode' // import dependency
 
+
 function App() {
 
     const [user, setUser] = useState<UserType | null>(null);
