@@ -1,5 +1,5 @@
 {
-  "name": "EvD-api",
+  "name": "evd-api",
   "version": "1.0.0",
   "description": "EVDiagnose api with Mongo DB",
   "main": "index.ts",
@@ -20,8 +20,7 @@
     "@types/cors": "^2.8.13",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
-    "END-api": "file:",
-    "EvD-api": "file:",
+    "evd-api": "file:",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.2.2",
